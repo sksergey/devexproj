@@ -2,8 +2,14 @@
 <dx-data-grid
         id="gridContainer"
         [dataSource]="projectsService.projectsList"
-        [columns]="['id', 'name', 'keywords']"
-        [showBorders]="true">
+        [columns]="['id', 'name', 'keywords',{ caption: 'id', cellTemplate: 'cellTemplate', dataField: 'id' }]"
+        [showBorders]="true"
+        [allowColumnReordering]="true">
+  <div *dxTemplate="let cellData of 'cellTemplate'">
+    <!-- Uncomment code below -->
+    <a [routerLink]="['/keywords', {id: cellData.value}]">{{cellData.value}}</a>
+    {{cellData.value}}
+  </div>
 </dx-data-grid>
 
 <!--<ul class="projects">-->

@@ -12,6 +12,7 @@ import { KeywordsComponent } from './projects/keywords/keywords.component';
 import { DxButtonModule } from 'devextreme-angular';
 import { DxTextBoxModule } from 'devextreme-angular';
 import { DxDataGridModule} from 'devextreme-angular';
+import { DxTemplateModule} from 'devextreme-angular';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DxDataGridModule} from 'devextreme-angular';
       AppRoutingModule,
       DxButtonModule,
       DxTextBoxModule,
-      DxDataGridModule
+      DxDataGridModule,
+      DxTemplateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
