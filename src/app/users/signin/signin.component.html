@@ -1,0 +1,49 @@
+<h2>Signin</h2>
+<form [formGroup]="signinForm" (ngSubmit)="onFormSubmit()">
+  <div class="dx-fieldset">
+  <div class="dx-field">
+    <div class="dx-field-label">Email</div>
+    <div class="dx-field-value">
+      <dx-text-box
+              [placeholder] = "emailTextBoxOptions.placeholder"
+              formControlName="email">
+      </dx-text-box>
+    </div>
+  </div>
+  <div class="dx-field">
+    <div class="dx-field-label">Password</div>
+    <div class="dx-field-value">
+      <dx-text-box
+              [placeholder] = "passwordTextBoxOptions.placeholder"
+              formControlName="password">
+      </dx-text-box>
+    </div>
+  </div>
+    <div class="dx-field">
+      <div class="dx-field-value">
+        <dx-button
+                icon="key"
+                type="success"
+                text="Done"
+                (onClick)="onFormSubmit()">
+        </dx-button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+<!--<form [formGroup]="signinForm" (ngSubmit)="onFormSubmit()">-->
+  <!--<h2>Signin</h2>-->
+  <!--<div class="form-group">-->
+    <!--<label class="center-block">email:-->
+      <!--<input class="form-control" formControlName="email">-->
+    <!--</label>-->
+    <!--<label class="center-block">password:-->
+      <!--<input class="form-control" formControlName="password">-->
+    <!--</label>-->
+    <!--<button type="submit" class="btn btn-success">Signin</button>-->
+  <!--</div>-->
+  <!--<p>status: {{ signinForm.status | json }}</p>-->
+<!--</form>-->

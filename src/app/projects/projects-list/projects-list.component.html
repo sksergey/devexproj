@@ -1,0 +1,15 @@
+<h2>Projects</h2>
+<dx-data-grid
+        id="gridContainer"
+        [dataSource]="projectsService.projectsList"
+        [columns]="['id', 'name', 'keywords']"
+        [showBorders]="true">
+</dx-data-grid>
+
+<!--<ul class="projects">-->
+  <!--<li *ngFor="let project of projectsService.projectsList">-->
+    <!--<a routerLink="/keywords/{{project.id}}">-->
+      <!--<span class="badge">{{project .id}}</span> {{project .name | uppercase }}-->
+    <!--</a>-->
+  <!--</li>-->
+<!--</ul>-->
