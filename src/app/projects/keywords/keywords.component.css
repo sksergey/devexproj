@@ -7,3 +7,6 @@ button {
     border-radius: 4px;
     cursor: pointer; cursor: hand;
 }
+.keywords {
+    width: 50%;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ProjectsService} from '../projects.service';
 
@@ -8,8 +9,14 @@ import { ProjectsService} from '../projects.service';
   styleUrls: ['./projects-list.component.css']
 })
 export class ProjectsListComponent implements OnInit {
-  constructor(public projectsService: ProjectsService) { }
-
+  constructor(public projectsService: ProjectsService, private router: Router) { }
+  onRowClick (e) {
+    let url = 'keywords/';
+    url += e.data.id.toString();
+    console.log(url);
+    this.router.navigate([url]);
+  }
   ngOnInit() {
+
   }
 }
