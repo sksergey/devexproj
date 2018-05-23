@@ -4,36 +4,36 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
-  private isLoggedIn: boolean;
-  private signinUrl: string;
-  private redirectUrl: string;
+  private _isLoggedIn: boolean;
+  private _signinUrl: string;
+  private _redirectUrl: string;
   constructor() {
-      this.setIsLoggedIn(false);
-      this.setSigninUrl('/signin');
-      this.setRedirectUrl('');
+      this.IsLoggedIn = false;
+      this.SigninUrl = '/signin';
+      this.RedirectUrl = '';
   }
-  getIsLoggedIn(): boolean {
+  get isLoggedIn(): boolean {
     return this.isLoggedIn;
   }
-  setIsLoggedIn(val: boolean) {
-    this.isLoggedIn = val;
+  set IsLoggedIn(val: boolean) {
+    this._isLoggedIn = val;
   }
-  getSigninUrl(): string {
-        return this.signinUrl;
+  get SigninUrl(): string {
+    return this._signinUrl;
   }
-  setSigninUrl(url: string): void {
-        this.signinUrl = url;
+  set SigninUrl(url: string) {
+    this._signinUrl = url;
   }
-  getRedirectUrl(): string {
-        return this.redirectUrl;
+  get RedirectUrl(): string {
+    return this._redirectUrl;
   }
-  setRedirectUrl(url: string): void {
-        this.redirectUrl = url;
+  set RedirectUrl(url: string) {
+    this._redirectUrl = url;
   }
   login() {
-        this.setIsLoggedIn(true);
+        this.IsLoggedIn = true;
   }
   logout() {
-        this.setIsLoggedIn(false);
+        this.IsLoggedIn = false;
   }
 }

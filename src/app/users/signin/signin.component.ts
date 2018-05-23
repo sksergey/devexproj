@@ -34,7 +34,7 @@ export class SigninComponent implements OnInit {
         if (this.signinForm.valid) {
                   this.userService.login();
             let url = '';
-            url = this.userService.getRedirectUrl();
+            url = this.userService.RedirectUrl;
             console.log('Redirect Url:' + url);
             this.router.navigate([ url ]);
               } else {

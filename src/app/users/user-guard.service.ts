@@ -13,11 +13,11 @@ export class UserGuardService implements CanActivate {
         let url = '';
         url = state.url;
         console.log('Url:' + url);
-        if (this.userService.getIsLoggedIn()) {
+        if (this.userService.IsLoggedIn) {
             return true;
         }
-        this.userService.setRedirectUrl(url);
-        this.router.navigate([ this.userService.getSigninUrl() ]);
+        this.userService.RedirectUrl = url;
+        this.router.navigate([ this.userService.SigninUrl ]);
         return false;
     }
 }
