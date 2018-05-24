@@ -1,4 +1,4 @@
-import {Keyword} from './keywords/keyword';
+import {Keyword} from './keyword';
 
 export class Project {
 id: number;

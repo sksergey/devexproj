@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { User } from '../user';
+import { User } from '../models/user';
 import {UserService} from '../user.service';
 
 @Component({
@@ -44,9 +44,6 @@ export class SigninComponent implements OnInit {
               }
     }
   ngOnInit() {
-  }
-  dxClick() {
-        alert('dx was click');
   }
 
 }

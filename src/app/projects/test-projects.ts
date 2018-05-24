@@ -1,5 +1,5 @@
-import { Project} from './project';
-import { Keyword} from './keywords/keyword';
+import { Project} from './models/project';
+import { Keyword} from './models/keyword';
 
 export const PROJECTS: Project[] = [
     { id: 1, name: 'technologies', keywords: [{text: 'php'}, {text: 'javascript'}, {text: 'java'}, {text: 'c'}, {text: 'c++'}]},
