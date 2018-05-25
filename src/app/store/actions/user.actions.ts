@@ -9,7 +9,7 @@ export const LOGOUT_USER = '[User] Logout';
 export class SigninUser implements Action {
     readonly type = SIGNIN_USER;
 
-    constructor(public payload: any) {}
+    constructor(public payload: User) {}
 }
 
 export class SigninSuccess implements Action {

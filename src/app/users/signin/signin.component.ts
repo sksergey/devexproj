@@ -40,7 +40,7 @@ export class SigninComponent implements OnInit {
             this.user.password = this.signinForm.value['password'];
             console.log(this.user);
             const payload = this.user;
-            this.store.dispatch(new SigninSuccess(payload));
+            this.store.dispatch(new SigninUser(payload));
         } else {
             // TODO error display & SigninError
             console.log('err form validation');
