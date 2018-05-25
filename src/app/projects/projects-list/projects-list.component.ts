@@ -9,7 +9,7 @@ import { ProjectsService} from '../projects.service';
   styleUrls: ['./projects-list.component.css']
 })
 export class ProjectsListComponent implements OnInit {
-  constructor(public projectsService: ProjectsService, private router: Router) { }
+  constructor(public projectsService: ProjectsService, private router: Router) {  }
   onRowClick (e) {
     let url = 'keywords/';
     url += e.data.id.toString();

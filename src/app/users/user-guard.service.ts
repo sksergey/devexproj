@@ -13,6 +13,7 @@ export class UserGuardService implements CanActivate {
         let url = '';
         url = state.url;
         console.log('Url:' + url);
+        console.log('isLoggedIn:' + this.userService.IsLoggedIn);
         if (this.userService.IsLoggedIn) {
             return true;
         }

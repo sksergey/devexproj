@@ -8,10 +8,10 @@ import { UserGuardService} from './users/user-guard.service';
 
 const routes: Routes = [
     {path: 'signin', component: SigninComponent},
-    {path: 'keywords/:id', component: KeywordsComponent, canActivate: [ UserGuardService]},
-    {path: '', component: ProjectsListComponent, canActivate: [ UserGuardService]}
-    // {path: '', component: ProjectsListComponent},
-    // {path: 'keywords/:id', component: KeywordsComponent}
+    // {path: 'keywords/:id', component: KeywordsComponent, canActivate: [ UserGuardService]},
+    // {path: '', component: ProjectsListComponent, canActivate: [ UserGuardService]}
+    {path: '', component: ProjectsListComponent},
+    {path: 'keywords/:id', component: KeywordsComponent}
     ]
 
 @NgModule({

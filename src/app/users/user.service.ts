@@ -12,8 +12,8 @@ export class UserService {
       this.SigninUrl = '/signin';
       this.RedirectUrl = '';
   }
-  get isLoggedIn(): boolean {
-    return this.isLoggedIn;
+  get IsLoggedIn(): boolean {
+    return this._isLoggedIn;
   }
   set IsLoggedIn(val: boolean) {
     this._isLoggedIn = val;
