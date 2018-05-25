@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app.states';
+import { SigninUser} from '../../store/actions/user.actions';
+import { SigninSuccess} from '../../store/actions/user.actions';
 
 import { User } from '../models/user';
 import {UserService} from '../user.service';
@@ -15,7 +19,7 @@ export class SigninComponent implements OnInit {
     user = new User();
     emailTextBoxOptions: any;
     passwordTextBoxOptions: any;
-    constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+    constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private store: Store<AppState>) {
         this.emailTextBoxOptions = {
             placeholder: 'Enter email...',
         };
@@ -32,16 +36,27 @@ export class SigninComponent implements OnInit {
     }
     onFormSubmit() {
         if (this.signinForm.valid) {
-                  this.userService.login();
-            let url = '';
-            url = this.userService.RedirectUrl;
-            console.log('Redirect Url:' + url);
-            this.router.navigate([ url ]);
-              } else {
-                this.userService.logout();
-                alert('error');
-                this.createForm();
-              }
+            this.user.email = this.signinForm.value['email'];
+            this.user.password = this.signinForm.value['password'];
+            console.log(this.user);
+            const payload = this.user;
+            this.store.dispatch(new SigninSuccess(payload));
+        } else {
+            // TODO error display & SigninError
+            console.log('err form validation');
+            this.createForm();
+        }
+        // if (this.signinForm.valid) {
+        //           this.userService.login();
+        //     let url = '';
+        //     url = this.userService.RedirectUrl;
+        //     console.log('Redirect Url:' + url);
+        //     this.router.navigate([ url ]);
+        //       } else {
+        //         this.userService.logout();
+        //         alert('error');
+        //         this.createForm();
+        //       }
     }
   ngOnInit() {
   }
