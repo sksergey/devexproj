@@ -5,6 +5,7 @@ import { User } from '../../users/models/user';
 export const SIGNIN_USER = '[User] Signin';
 export const SIGNIN_SUCCESS = '[User] SigninSuccess';
 export const LOGOUT_USER = '[User] Logout';
+export const GET_USER_STATE = '[User] GetUserState';
 
 export class SigninUser implements Action {
     readonly type = SIGNIN_USER;

@@ -1,15 +1,18 @@
 import { User} from '../../users/models/user';
 import * as UserActions from '../actions/user.actions';
 
-export interface UserState {
+
+export interface State {
     user: User | null;
     isLoggedIn: boolean;
 }
 
-export const initialUserState: UserState = {
+export const initialUserState: State = {
     user: null,
     isLoggedIn: false
 };
+
+
 
 export function userReducer(state = initialUserState, action: UserActions.Actions) {
     switch (action.type) {
@@ -38,3 +41,6 @@ export function userReducer(state = initialUserState, action: UserActions.Action
         }
     }
 }
+
+export const getUser = (state: State) => state.user;
+export const getIsLoggedIn = (state: State) => state.isLoggedIn;

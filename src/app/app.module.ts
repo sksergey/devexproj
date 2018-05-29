@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { userReducer} from './store/reducers/user.reducers';
 import { projectReducer} from './store/reducers/project.reducers';
 import { UserEffects} from './store/effects/user.effects';
+import { ProjectEffects} from './store/effects/project.effects';
 
 import { DxButtonModule } from 'devextreme-angular';
 import { DxTextBoxModule } from 'devextreme-angular';
@@ -37,7 +38,7 @@ import {EffectsModule} from '@ngrx/effects';
       DxDataGridModule,
       DxTemplateModule,
       StoreModule.forRoot({ userReducer, projectReducer}),
-      EffectsModule.forRoot([ UserEffects ]),
+      EffectsModule.forRoot([ UserEffects, ProjectEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]
