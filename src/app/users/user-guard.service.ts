@@ -7,40 +7,57 @@ import * as userReducer from '../store/reducers/user.reducers';
 import * as appState from '../store/app.states';
 import * as userAction from '../store/actions/user.actions';
 import { Store} from '@ngrx/store';
+import { map} from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserGuardService implements CanActivate {
+    isLoggedIn: boolean;
     isLoggedIn$: Observable<boolean>;
 
-    islog: boolean;
+    constructor(private userService: UserService, private router: Router, private store: Store<appState.AppState>) {}
 
-    constructor(private userService: UserService, private router: Router, private store: Store<appState.AppState>) {
-
-    }
-
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
         let url = '';
         url = state.url;
         console.log('Url:' + url);
-        this.isLoggedIn$ = this.store.select(appState.getIsLoggedIn);
 
-        this.isLoggedIn$.subscribe(val => console.log('!!!!!!!!!!!!!!' + val));
-        // console.log('!!userstate isLoggedIn:' + this.islog);
+        return this.store.select(appState.getIsLoggedIn).pipe(
+            map(val => {
+                console.log('val: ', val);
+                if (val) {
+                    return true;
+                } else {
+                    this.userService.RedirectUrl = url;
+                    this.router.navigate([ this.userService.SigninUrl ]);
+                    return false;
+                }
+            })
+        );
 
-        // console.log('!!userstate isLoggedIn:' + userState.isLoggedIn);
-        // if (userState.isLoggedIn) {
+        //
+        //
+        //
+        // this.isLoggedIn$ = this.store.select(appState.getIsLoggedIn).subscribe(val => this.isLoggedIn$ = val);
+        // let tmp = this.store.select(appState.getIsLoggedIn).subscribe(val => this.isLoggedIn = val);
+        // // this.store.select(appState.getIsLoggedIn).subscribe(val => this.isLoggedIn = val);
+        //
+        // console.log('isLoggedIn(canActivate):' + this.isLoggedIn);
+        // if (this.isLoggedIn) {
         //     return true;
         // }
-
-        // console.log('!!isLoggedIn:' + this.userService.IsLoggedIn);
-        // if (this.userService.IsLoggedIn) {
-        //     return true;
-        // }
-
-        this.userService.RedirectUrl = url;
-        this.router.navigate([ this.userService.SigninUrl ]);
-        return false;
+        //
+        // // console.log('!!isLoggedIn:' + this.userService.IsLoggedIn);
+        // // if (this.userService.IsLoggedIn) {
+        // //     return true;
+        // // }
+        //
+        // // ---------------------------------------
+        // this.userService.RedirectUrl = url;
+        // this.router.navigate([ this.userService.SigninUrl ]);
+        // // ---------------------------------------
+        // return false;
     }
 }

@@ -1,42 +1,34 @@
 import { User} from '../../users/models/user';
 import * as UserActions from '../actions/user.actions';
+import {Observable} from 'rxjs';
 
 
 export interface State {
-    user: User | null;
+    user?: User;
     isLoggedIn: boolean;
 }
 
-export const initialUserState: State = {
-    user: null,
+export const initialState: State = {
     isLoggedIn: false
 };
 
-
-
-export function userReducer(state = initialUserState, action: UserActions.Actions) {
+export function userReducer(state = initialState, action: UserActions.Actions) {
     switch (action.type) {
         case UserActions.SIGNIN_USER: {
-            console.log('case SIGNIN_USER');
-
             return {
                 ...state};
         }
         case UserActions.SIGNIN_SUCCESS: {
-            console.log('case SIGNIN_SUCCESS');
             state.isLoggedIn = true;
             state.user = action.payload;
-            console.log('switch state:', state);
             return {
                 ...state};
         }
         case UserActions.LOGOUT_USER: {
-            console.log('case LOGOUT_USER');
             return {
                 ...state};
         }
         default: {
-            console.log('UNKNOWN user action being handled!');
             return state;
         }
     }

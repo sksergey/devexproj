@@ -8,10 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { KeywordsComponent } from './projects/keywords/keywords.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
-import { userReducer} from './store/reducers/user.reducers';
-import { projectReducer} from './store/reducers/project.reducers';
+import { reducers} from './store/app.states';
+// import { metaReducers } from './store/app.states';
 import { UserEffects} from './store/effects/user.effects';
 import { ProjectEffects} from './store/effects/project.effects';
 
@@ -20,6 +21,8 @@ import { DxTextBoxModule } from 'devextreme-angular';
 import { DxDataGridModule} from 'devextreme-angular';
 import { DxTemplateModule} from 'devextreme-angular';
 import {EffectsModule} from '@ngrx/effects';
+
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -37,10 +40,12 @@ import {EffectsModule} from '@ngrx/effects';
       DxTextBoxModule,
       DxDataGridModule,
       DxTemplateModule,
-      StoreModule.forRoot({ userReducer, projectReducer}),
+      // StoreModule.forRoot(reducers, { metaReducers }),
+      StoreModule.forRoot(reducers),
       EffectsModule.forRoot([ UserEffects, ProjectEffects]),
+      HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,61 +4,74 @@ import { Router } from '@angular/router';
 import { Effect, Actions, ofType} from '@ngrx/effects';
 import { Observable } from 'rxjs/';
 import { Store } from '@ngrx/store';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, switchMap, catchError } from 'rxjs/operators';
 
 import * as userActions from '../actions/user.actions';
 import {User} from '../../users/models/user';
 import {AppState} from '../app.states';
+import { AuthService } from '../../services/auth.service';
 
 
 @Injectable()
 export class UserEffects {
 
     constructor(
-        private actions$: Actions,
-        // private authService: AuthService,
+        private actions: Actions,
         private router: Router,
-        private store: Store<AppState>
+        private store: Store<AppState>,
+        private authService: AuthService,
     ) {}
 
     @Effect({ dispatch: false })
-    SigninUser = this.actions$
-        .ofType( userActions.SIGNIN_USER )
+    SigninUser = this.actions
+        .ofType(userActions.SIGNIN_USER)
         .pipe(
-            map(( action: userActions.SigninUser ) => action.payload),
-            tap(({email, password}) => {
-                console.log('email:', email);
-                console.log('pass:', password);
-                let user = new User(email, password);
-                this.store.dispatch(new userActions.SigninSuccess( user ));
-                // this.router.navigateByUrl('/keywords/1');
+            map((action: userActions.SigninUser) => action.payload),
+            switchMap(payload => {
+                return this.authService.logIn(payload.email, payload.password)
+                    .pipe(
+                        map((res) => {
+                            console.log('server res:', res.status);
+                            if (res.status === 'success') {
+                                let user = new User(payload.email, payload.password);
+                                this.store.dispatch(new userActions.SigninSuccess( user ));
+                            }
+                        })
+                    );
             })
-        );
+            );
 
     @Effect({ dispatch: false })
-    SigninSuccess = this.actions$
+    SigninSuccess = this.actions
         .ofType( userActions.SIGNIN_SUCCESS )
         .pipe(
             map(( action: userActions.SigninSuccess ) => action.payload),
-            tap(({email, password}) => {
-                // console.log('email:', email);
-                // console.log('pass:', password);
-                // let user = new User(email, password);
-                // this.store.dispatch(new userActions.SigninSuccess( user ));
-                // this.router.navigateByUrl('');
-                this.router.navigateByUrl('/keywords/1');
+            tap(() => {
+                this.router.navigateByUrl('');
             })
         );
 
     // @Effect({ dispatch: false })
-    // GetUserState = this.actions$
-    //     .ofType( userActions.GET_USER_STATE )
+    // SigninSuccess = this.actions
+    //     .ofType( userActions.SIGNIN_SUCCESS )
     //     .pipe(
-    //         map(( action: userActions.GetUserState ) => action.payload),
+    //         map(( action: userActions.SigninSuccess ) => action.payload),
     //         tap(() => {
-    //             return this.
+    //             this.router.navigateByUrl('');
     //         })
     //     );
 
-
+    // @Effect({ dispatch: false })
+    // SigninUser = this.actions
+    //     .ofType( userActions.SIGNIN_USER )
+    //     .pipe(
+    //         map(( action: userActions.SigninUser ) => action.payload),
+    //         tap(({email, password}) => {
+    //             let user = new User(email, password);
+    //             console.log('!!!!test sign in');
+    //             // this.store.dispatch(new userActions.SigninSuccess( user ));
+    //             this.store.dispatch(new userActions.SigninSuccess( user ));
+    //         })
+    //         );
+    //
 }

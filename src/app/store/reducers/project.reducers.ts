@@ -2,36 +2,35 @@ import { Project} from '../../projects/models/project';
 import { PROJECTS} from '../../projects/test-projects';
 import * as ProjectActions from '../actions/project.actions';
 
-export interface ProjectState {
+export interface State {
     project_list: Project[];
-    currentProject: Project | null;
+    currentProject?: number;
 }
 
-export const initialProjectState: ProjectState = {
+export const initialState: State = {
     project_list: PROJECTS,
-    currentProject: null
 };
 
-export function projectReducer(state = initialProjectState, action: ProjectActions.Actions) {
+export function projectReducer(state = initialState, action: ProjectActions.Actions) {
     switch (action.type) {
         case ProjectActions.SHOWALL_PROJECTS: {
-            console.log('case SHOWALL_PROJECTS');
             return {
                 ...state};
         }
         case ProjectActions.SELECT_PROJECT: {
-            console.log('case SELECT_PROJECT');
+            state.currentProject = action.payload;
             return {
                 ...state};
         }
         case ProjectActions.SHOW_KEYWORDS: {
-            console.log('case SHOW_KEYWORDS');
             return {
                 ...state};
         }
         default: {
-            console.log('UNKNOWN project action being handled!');
             return state;
         }
     }
 }
+
+export const getProjects = (state: State) => state.project_list;
+export const getCurrentProject = (state: State) => state.currentProject;

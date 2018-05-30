@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../store/app.states';
+import * as appState from '../../store/app.states';
 import { SigninUser} from '../../store/actions/user.actions';
-import { SigninSuccess} from '../../store/actions/user.actions';
 
 import { User } from '../models/user';
 import {UserService} from '../user.service';
@@ -19,7 +18,12 @@ export class SigninComponent implements OnInit {
     user = new User();
     emailTextBoxOptions: any;
     passwordTextBoxOptions: any;
-    constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private store: Store<AppState>) {
+
+    constructor(
+        private fb: FormBuilder,
+        private userService: UserService,
+        private router: Router,
+        private store: Store<appState.AppState>) {
         this.emailTextBoxOptions = {
             placeholder: 'Enter email...',
         };
@@ -28,12 +32,14 @@ export class SigninComponent implements OnInit {
         };
         this.createForm();
     }
+
     createForm() {
         this.signinForm = this.fb.group({
             email: [this.user.email, [Validators.email, Validators.required]],
             password: [this.user.password, [Validators.minLength(4), Validators.required]]
         });
     }
+
     onFormSubmit() {
         if (this.signinForm.valid) {
             this.user.email = this.signinForm.value['email'];
@@ -46,6 +52,7 @@ export class SigninComponent implements OnInit {
             console.log('err form validation');
             this.createForm();
         }
+
         // if (this.signinForm.valid) {
         //           this.userService.login();
         //     let url = '';

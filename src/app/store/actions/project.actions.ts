@@ -15,13 +15,13 @@ export class ShowAll implements Action {
 export class SelectProject implements Action {
     readonly type = SELECT_PROJECT;
 
-    constructor(public payload: Project) {}
+    constructor(public payload: number) {}
 }
 
 export class ShowKeywors implements Action {
     readonly type = SHOW_KEYWORDS;
 
-    constructor(public payload: number) {}
+    constructor() {}
 }
 
 export type Actions =
