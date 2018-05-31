@@ -6,10 +6,10 @@ export const SHOWALL_PROJECTS = '[Project] ShowAll';
 export const SELECT_PROJECT = '[Project] SelectProject';
 export const SHOW_KEYWORDS = '[Project] ShowKeywords';
 
-export class ShowAll implements Action {
+export class ShowAllProjects implements Action {
     readonly type = SHOWALL_PROJECTS;
 
-    constructor(public payload: Project[]) {}
+    // constructor(public payload: Project[]) {}
 }
 
 export class SelectProject implements Action {
@@ -25,6 +25,6 @@ export class ShowKeywors implements Action {
 }
 
 export type Actions =
-    ShowAll
+    ShowAllProjects
     | SelectProject
     | ShowKeywors;

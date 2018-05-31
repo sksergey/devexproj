@@ -11,7 +11,6 @@ import {User} from '../../users/models/user';
 import {AppState} from '../app.states';
 import { AuthService } from '../../services/auth.service';
 
-
 @Injectable()
 export class UserEffects {
 

@@ -2,18 +2,21 @@ import { Project} from '../../projects/models/project';
 import { PROJECTS} from '../../projects/test-projects';
 import * as ProjectActions from '../actions/project.actions';
 
+import {map} from 'rxjs/operators';
+
 export interface State {
-    project_list: Project[];
+    project_list?: Project[];
     currentProject?: number;
 }
 
 export const initialState: State = {
-    project_list: PROJECTS,
+    // project_list: PROJECTS,
 };
 
 export function projectReducer(state = initialState, action: ProjectActions.Actions) {
     switch (action.type) {
         case ProjectActions.SHOWALL_PROJECTS: {
+            state.project_list = PROJECTS;
             return {
                 ...state};
         }

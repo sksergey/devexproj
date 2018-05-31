@@ -1,7 +1,7 @@
 import {Injectable, Input} from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { UserService} from './user.service';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 import * as userReducer from '../store/reducers/user.reducers';
 import * as appState from '../store/app.states';
@@ -14,8 +14,6 @@ import { map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserGuardService implements CanActivate {
-    isLoggedIn: boolean;
-    isLoggedIn$: Observable<boolean>;
 
     constructor(private userService: UserService, private router: Router, private store: Store<appState.AppState>) {}
 
