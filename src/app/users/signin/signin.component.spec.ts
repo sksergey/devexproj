@@ -48,4 +48,25 @@ fdescribe('SigninComponent', () => {
     it('should set submitted to true', async(() => {
         expect(component.createForm).toBeTruthy();
     }));
+
+    it('form should be invalid', async(() => {
+        component.signinForm.controls['email'].setValue('');
+        component.signinForm.controls['password'].setValue('');
+        expect(component.signinForm.valid).toBeFalsy();
+    }));
+
+    it('form should be valid', async(() => {
+        component.signinForm.controls['email'].setValue('test@test');
+        component.signinForm.controls['password'].setValue('1234');
+        expect(component.signinForm.valid).toBeTruthy();
+    }));
+
+    it('should be call onSubmit', async(() => {
+        fixture.detectChanges();
+        spyOn(component, 'onFormSubmit');
+        htmlEl = fixture.debugElement.query(By.css('dx-button')).nativeElement;
+        htmlEl.click();
+        expect(component.onFormSubmit).toHaveBeenCalledTimes(0);
+    }));
+
 });
