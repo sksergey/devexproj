@@ -1,14 +1,35 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SigninComponent } from './signin.component';
+import {BrowserModule, By} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DxButtonModule, DxTextBoxModule} from 'devextreme-angular';
+import {DebugElement} from '@angular/core';
 
-describe('SigninComponent', () => {
+import {Store, StoreModule} from '@ngrx/store';
+import * as appState from '../../store/app.states';
+import {reducers} from '../../store/app.states';
+
+fdescribe('SigninComponent', () => {
   let component: SigninComponent;
   let fixture: ComponentFixture<SigninComponent>;
+  let dEl: DebugElement;
+  let htmlEl: HTMLElement;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SigninComponent ]
+      declarations: [
+          SigninComponent
+      ],
+        imports: [
+            BrowserModule,
+            FormsModule,
+            ReactiveFormsModule,
+            DxButtonModule,
+            DxTextBoxModule,
+            StoreModule.forRoot(reducers)
+        ],
     })
     .compileComponents();
   }));
@@ -16,10 +37,15 @@ describe('SigninComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SigninComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
+
+    it('should set submitted to true', async(() => {
+        expect(component.createForm).toBeTruthy();
+    }));
 });

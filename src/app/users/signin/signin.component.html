@@ -27,7 +27,8 @@
                 icon="key"
                 type="success"
                 text="Done"
-                (onClick)="onFormSubmit()">
+                (onClick)="onFormSubmit()"
+        [disabled]="!signinForm.valid">
         </dx-button>
       </div>
     </div>

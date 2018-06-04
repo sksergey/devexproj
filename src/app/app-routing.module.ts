@@ -6,7 +6,7 @@ import { KeywordsComponent } from './projects/keywords/keywords.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { UserGuardService} from './users/user-guard.service';
 
-const routes: Routes = [
+export const routes: Routes = [
     {path: 'signin', component: SigninComponent},
     {path: 'keywords/:id', component: KeywordsComponent, canActivate: [ UserGuardService]},
     {path: '', component: ProjectsListComponent, canActivate: [ UserGuardService]}
@@ -14,14 +14,14 @@ const routes: Routes = [
     // {path: 'keywords/:id', component: KeywordsComponent}
     ]
 
-@NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forRoot(routes)
-    ],
-    exports: [
-        RouterModule
-    ],
-    declarations: []
-})
+// @NgModule({
+//     imports: [
+//         CommonModule,
+//         RouterModule.forRoot(routes)
+//     ],
+//     exports: [
+//         RouterModule
+//     ],
+//     declarations: []
+// })
 export class AppRoutingModule { }

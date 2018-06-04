@@ -22,7 +22,7 @@ export class SigninComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private userService: UserService,
-        private router: Router,
+        // private router: Router,
         private store: Store<appState.AppState>) {
         this.emailTextBoxOptions = {
             placeholder: 'Enter email...',
@@ -47,10 +47,12 @@ export class SigninComponent implements OnInit {
             console.log(this.user);
             const payload = this.user;
             this.store.dispatch(new SigninUser(payload));
+            return true;
         } else {
             // TODO error display & SigninError
             console.log('err form validation');
             this.createForm();
+            return false;
         }
 
         // if (this.signinForm.valid) {

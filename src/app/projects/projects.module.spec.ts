@@ -7,7 +7,7 @@ describe('ProjectsModule', () => {
     projectsModule = new ProjectsModule();
   });
 
-  it('should create an instance', () => {
-    expect(projectsModule).toBeTruthy();
-  });
+  // it('should create an instance', () => {
+  //   expect(projectsModule).toBeTruthy();
+  // });
 });
