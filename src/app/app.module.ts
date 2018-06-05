@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 import { SigninComponent } from './users/signin/signin.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { AppRoutingModule } from './app-routing.module';
-import { routes } from './app-routing.module';
+import { AppRoutingModule} from './app-routing.module';
+
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { KeywordsComponent } from './projects/keywords/keywords.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,8 +23,6 @@ import { DxTemplateModule} from 'devextreme-angular';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AuthService } from './services/auth.service';
-import { RouterModule } from '@angular/router';
-
 
 @NgModule({
   declarations: [
@@ -37,8 +35,7 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
       FormsModule,
       ReactiveFormsModule,
-      // AppRoutingModule,
-      RouterModule.forRoot(routes),
+      AppRoutingModule,
       DxButtonModule,
       DxTextBoxModule,
       DxDataGridModule,
@@ -49,6 +46,6 @@ import { RouterModule } from '@angular/router';
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
-    exports: [RouterModule]
+
 })
 export class AppModule { }

@@ -6,7 +6,6 @@ import { PROJECTS } from './test-projects';
   providedIn: 'root'
 })
 export class ProjectsService {
-  projectsList = PROJECTS;
   currentProject: Project;
   constructor() { }
   getProject(id: number): Project {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as appState from '../../store/app.states';
 import { SigninUser} from '../../store/actions/user.actions';
@@ -22,7 +21,6 @@ export class SigninComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private userService: UserService,
-        // private router: Router,
         private store: Store<appState.AppState>) {
         this.emailTextBoxOptions = {
             placeholder: 'Enter email...',

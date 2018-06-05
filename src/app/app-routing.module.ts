@@ -14,14 +14,14 @@ export const routes: Routes = [
     // {path: 'keywords/:id', component: KeywordsComponent}
     ]
 
-// @NgModule({
-//     imports: [
-//         CommonModule,
-//         RouterModule.forRoot(routes)
-//     ],
-//     exports: [
-//         RouterModule
-//     ],
-//     declarations: []
-// })
+@NgModule({
+    imports: [
+        CommonModule,
+        RouterModule.forRoot(routes)
+    ],
+    exports: [
+        RouterModule
+    ],
+    declarations: []
+})
 export class AppRoutingModule { }
